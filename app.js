@@ -9,6 +9,45 @@ var rawBodySaver = function (req, res, buf, encoding) {
   }
 }
 
+function classify(query){
+  if(query.includes("product")){
+    return '*'
+  }
+  if(query.includes("multiply")){
+    return '*'
+  }
+  if(query.includes("times")){
+    return '*'
+  }
+  if(query.includes("*")){
+    return '*'
+  }
+  if(query.includes("subtract")){
+    return '-'
+  }
+  if(query.includes("difference")){
+    return '-'
+  }
+  if(query.includes("minus")){
+    return '-'
+  }
+  if(query.includes("-")){
+    return '-'
+  }
+  if(query.includes("add")){
+    return '+'
+  }
+  if(query.includes("plus")){
+    return '+'
+  }
+  if(query.includes("+")){
+    return '+'
+  }
+  console.log(query)
+  return (0)
+}
+
+
 app.use(bodyParser.json({ verify: rawBodySaver }));
 app.use(bodyParser.urlencoded({ verify: rawBodySaver, extended: true }));
 app.use(bodyParser.raw({ verify: rawBodySaver, type: '*/*' }));
@@ -25,7 +64,6 @@ var math_it_up = {
   '-': function (x, y) { return x - y },
   '/': function (x, y) { return x / y },
   '*': function (x, y) { return x * y },
-  'null': function(){return 0}
 }
 
 app.get('/', (req, res) => {
@@ -53,6 +91,11 @@ app.post('/test', (req, res) => {
       todo = '/'
     } else {
       todo = null
+    }
+
+    if(todo == null){
+      todo = classify(operation_type);
+      console.log(todo)
     }
 
     console.log(todo)
