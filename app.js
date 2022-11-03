@@ -39,6 +39,7 @@ app.get('/', (req, res) => {
 app.post('/test', (req, res) => {
     let {operation_type, x, y} = req.body;
     var obj = req.body
+    console.log(req.body)
     let todo;
 
     if(operation_type == Operation.addition){
