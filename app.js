@@ -59,7 +59,7 @@ app.post('/test', (req, res) => {
       return res.send({'res': 'An error occured'})
     }
 
-    res.send({
+    return res.send({
       "slackUsername": "technicaldee",
       "operation_type": operation_type,
       "result": math_it_up[todo](parseInt(x), parseInt(y)),
