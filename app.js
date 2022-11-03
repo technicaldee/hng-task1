@@ -95,7 +95,15 @@ app.post('/test', (req, res) => {
 
     if(todo == null){
       todo = classify(operation_type);
-      console.log(todo)
+      if(todo == '*'){
+        operation_type = Operation.multiplication
+      }
+      if(todo == '-'){
+        operation_type = Operation.subtraction
+      }
+      if(todo == '+'){
+        operation_type = Operation.addition
+      }
     }
 
     console.log(todo)
