@@ -24,7 +24,8 @@ var math_it_up = {
   '+': function (x, y) { return x + y },
   '-': function (x, y) { return x - y },
   '/': function (x, y) { return x / y },
-  '*': function (x, y) { return x * y }
+  '*': function (x, y) { return x * y },
+  'null': function(){return 0}
 }
 
 app.get('/', (req, res) => {
@@ -51,7 +52,7 @@ app.post('/test', (req, res) => {
     } else if(operation_type == Operation.division){
       todo = '/'
     } else {
-      return null
+      todo = null
     }
 
     console.log(todo)
